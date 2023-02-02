@@ -74,3 +74,5 @@ end
 gem "dotenv"
 
 gem 'active_storage-postgresql'
+
+gem 'devise'
