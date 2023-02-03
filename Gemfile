@@ -76,3 +76,11 @@ gem "dotenv"
 gem 'active_storage-postgresql'
 
 gem 'devise'
+
+gem 'pry-rails'
+
+gem 'will_paginate'
+
+gem 'bootstrap'
+gem 'jsbundling-rails'
+gem 'cssbundling-rails'
