@@ -10,6 +10,17 @@
   display: inline-block;
 }
 
+.nav-item.nav-link {
+  font-size: 18px;
+  padding: 10px 20px;
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-item.nav-link:hover {
+  color: #333;
+}
+
 .jumbotron {
   background-color: #f7f7f7;
   padding: 50px;
