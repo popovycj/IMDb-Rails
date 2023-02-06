@@ -84,3 +84,5 @@ gem 'will_paginate'
 gem 'bootstrap'
 gem 'jsbundling-rails'
 gem 'cssbundling-rails'
+
+gem 'composite_primary_keys'
