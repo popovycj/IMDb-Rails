@@ -22,14 +22,19 @@
           <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="The Godfather">
           <h3><%= movie.title %></h3>
           <p>(1972)</p>
-          <p>9.2/10</p>
+          <p>
+            <span><%= movie.average_rating %>/10</span>
+            <span><%= movie.ratings.count %> reviews</span>
+          </p>
 
           <div class="star-rating">
-
-            <% (1..10).each do |i| %>
-              <span class="star full-star" data-movie-card-target="star" data-action="click->movie-card#rateMovie" data-rating="<%= i %>">&#9733;</span>
+            <% if user_signed_in? %>
+              <% (1..10).each do |i| %>
+                <span class="star full-star" data-movie-card-target="star" data-action="click->movie-card#rateMovie" data-rating="<%= i %>">&#9733;</span>
+              <% end %>
+            <% else %>
+              <span>Log in to evaluate</span>
             <% end %>
-
           </div>
 
         </div>
@@ -37,5 +42,5 @@
     <% end %>
   </div>
 
-  <%= will_paginate @movies, renderer: ApplicationHelper::CustomRenderer %>
+  <%= will_paginate @movies %>
 </div>
