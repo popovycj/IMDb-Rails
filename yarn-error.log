@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/local/bin/yarn add @hotwired/stimulus-loading
+  /usr/bin/node /usr/local/bin/yarn add @hotwired/stimulus-dropdown
 
 PATH: 
   /home/popovycj/.rbenv/plugins/ruby-build/bin:/home/popovycj/.rbenv/shims:/home/popovycj/.rbenv/bin:/home/popovycj/.rbenv/plugins/ruby-build/bin:/home/popovycj/.rbenv/shims:/home/popovycj/.rbenv/bin:/home/popovycj/.local/bin:/home/popovycj/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/var/lib/snapd/snap/bin
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@hotwired%2fstimulus-loading: Not found
+  Error: https://registry.yarnpkg.com/@hotwired%2fstimulus-dropdown: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
       at Request.emit (node:events:513:28)
@@ -38,7 +38,10 @@ npm manifest:
       "bootstrap": "^5.2.3",
       "bootstrap-icons": "^1.10.3",
       "esbuild": "^0.17.5",
-      "sass": "^1.58.0"
+      "jquery": "^3.6.3",
+      "popper.js": "^1.16.1",
+      "sass": "^1.58.0",
+      "stimulus-dropdown": "^2.1.0"
     },
     "scripts": {
       "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",
@@ -289,6 +292,11 @@ Lockfile:
     dependencies:
       is-glob "^4.0.1"
   
+  hotkeys-js@>=3:
+    version "3.10.1"
+    resolved "https://registry.yarnpkg.com/hotkeys-js/-/hotkeys-js-3.10.1.tgz#0c67e72298f235c9200e421ab112d156dc81356a"
+    integrity sha512-mshqjgTqx8ee0qryHvRgZaZDxTwxam/2yTQmQlqAWS3+twnq1jsY9Yng9zB7lWq6WRrjTbTOc7knNwccXQiAjQ==
+  
   immutable@^4.0.0:
     version "4.2.3"
     resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.2.3.tgz#a203cdda37a5a30bc351b982a1794c1930198815"
@@ -318,6 +326,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
     integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
   
+  jquery@^3.6.3:
+    version "3.6.3"
+    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
+    integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
+  
   normalize-path@^3.0.0, normalize-path@~3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -327,6 +340,11 @@ Lockfile:
     version "2.3.1"
     resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
     integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
+  
+  popper.js@^1.16.1:
+    version "1.16.1"
+    resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+    integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
   
   readdirp@~3.6.0:
     version "3.6.0"
@@ -348,6 +366,20 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
     integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+  
+  stimulus-dropdown@^2.1.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/stimulus-dropdown/-/stimulus-dropdown-2.1.0.tgz#22f15cd1dc247e08f04c3f95d7ab9d8102602a07"
+    integrity sha512-p4Bs56/ilB2E0lfFaNajKIHZK1PMUUDnhDl74f97bn087fxIfRB7WQekVtTTWJdRlf3EIgSsDX7K1TsaLiIcLg==
+    dependencies:
+      stimulus-use "^0.51.1"
+  
+  stimulus-use@^0.51.1:
+    version "0.51.3"
+    resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.51.3.tgz#d7ac671aff8d0db253296dec89d38aa6f4b27e2a"
+    integrity sha512-V4YETxMFL4/bpmcqlwFtaOaJg9sLF+XlWsvXrsoWVA5jffsqe7uAvV6gGPPQta7Hgx01vovA0yNsWUe2eU9Jmw==
+    dependencies:
+      hotkeys-js ">=3"
   
   to-regex-range@^5.0.1:
     version "5.0.1"

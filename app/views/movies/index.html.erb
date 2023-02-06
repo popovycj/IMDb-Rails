@@ -1,0 +1,41 @@
+<div class="jumbotron text-center">
+  <h1>IMDb Top Rated Movies</h1>
+  <p>A list of top rated movies on IMDb</p>
+  <%= form_tag movies_path, method: :get, class: "form-inline d-flex justify-content-center", data: { controller: "autosubmit" } do %>
+    <%= select_tag :category,
+                    options_from_collection_for_select(@categories, :name, :name, @selected_category),
+                    prompt: "All categories",
+                    class: "form-control categories-dropdown",
+                    data: { action: "change->autosubmit#submitForm" } %>
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="page_info text-center my-3">
+    <%= page_entries_info(@movies).html_safe %>
+  </div>
+
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-sm-4">
+        <div class="movie-card" data-controller="movie-card" id=<%= movie.id %>>
+          <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="The Godfather">
+          <h3><%= movie.title %></h3>
+          <p>(1972)</p>
+          <p>9.2/10</p>
+
+          <div class="star-rating">
+
+            <% (1..10).each do |i| %>
+              <span class="star full-star" data-movie-card-target="star" data-action="click->movie-card#rateMovie" data-rating="<%= i %>">&#9733;</span>
+            <% end %>
+
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= will_paginate @movies, renderer: ApplicationHelper::CustomRenderer %>
+</div>
