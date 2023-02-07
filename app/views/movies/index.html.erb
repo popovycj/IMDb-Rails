@@ -18,25 +18,61 @@
   <div class="row">
     <% @movies.each do |movie| %>
       <div class="col-sm-4">
-        <div class="movie-card" data-controller="movie-card" id=<%= movie.id %>>
+        <div class="movie-card" data-controller="movie-card" data-movie-card-movie-id="<%= movie.id %>">
+          <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
+
           <img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SY1000_CR0,0,675,1000_AL_.jpg" alt="The Godfather">
           <h3><%= movie.title %></h3>
           <p>(1972)</p>
           <p>
-            <span><%= movie.average_rating %>/10</span>
-            <span><%= movie.ratings.count %> reviews</span>
+            <span class="average-tag">
+              <span class="fw-bold" data-movie-card-target="average_rating">
+                <%= movie.average_rating %>
+              </span>
+              <span>/10</span>
+            </span>
+
+            <span data-movie-card-target="reviews_count"><%= movie.ratings.count %></span>
+            <span> reviews</span>
           </p>
 
           <div class="star-rating">
             <% if user_signed_in? %>
-              <% (1..10).each do |i| %>
-                <span class="star full-star" data-movie-card-target="star" data-action="click->movie-card#rateMovie" data-rating="<%= i %>">&#9733;</span>
-              <% end %>
-            <% else %>
-              <span>Log in to evaluate</span>
-            <% end %>
-          </div>
+              <div class="star-rating-user">
+                <% user_rate = current_user.rating(movie.id) %>
+                <span class="tag" data-action="click->movie-card#deleteRating">
+                  <span class="user_rating">
+                    <span>Your rating: </span>
+                    <span class="fw-bold" data-movie-card-target="user_rating">
+                      <%= user_rate.zero? ? 'Not graded yet' : user_rate %>
+                    </span>
+                  </span>
 
+                  <span class="delete-rating">Delete rating</span>
+                </span>
+              </div>
+
+              <div class="star-rating-stars">
+                <% (1..10).each do |i| %>
+                  <span class="star <%= user_rate >= i ? 'full-star' : 'empty-star' %>"
+                    data-movie-card-target="star"
+                    data-action="click->movie-card#rateMovie"
+                    data-rating="<%= i %>">
+                    &#9733;
+                  </span>
+                <% end %>
+              </div>
+            <% else %>
+              <p>Log in to evaluate</p>
+            <% end %>
+
+            <div class="movie-categories">
+              <% movie.categories.each do |category| %>
+                <%= link_to category.name, root_path(category: category.name), class: "tag" %>
+              <% end %>
+            </div>
+
+          </div>
         </div>
       </div>
     <% end %>

@@ -1,23 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['star']
-
-  connect() {
-    this.userIdPromise = this.loadUserId()
-  }
-
-  async loadUserId() {
-    return fetch("/user_id")
-      .then(response => response.json())
-      .then(data => {
-        this.userId = data.user_id
-        return data.user_id
-      })
-      .catch(error => {
-        // Handle the error
-      })
-  }
+  static targets = ['star', 'user_rating', 'average_rating', 'reviews_count']
 
   rateMovie(event) {
     const selectedRating = event.currentTarget.dataset.rating
@@ -31,30 +15,76 @@ export default class extends Controller {
       }
     })
 
-    console.log(`requesting backend... with id: ${this.element.id} and rating: ${selectedRating}`)
-
-    fetch(`/movies/${this.data.get('id')}/rate`, {
-      method: "POST",
+    fetch('/api/ratings/update_or_create', {
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       },
       body: JSON.stringify({
-        score: rating,
-        movie_id: this.element.id,
-        user_id: this.loadUserId()
+        movie_id: this.data.get('movie-id'),
+        score: selectedRating
       })
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error("Request failed");
+      if (response.status === 200) {
+        return response.json()
+      } else if (response.status === 422) {
+        throw new Error('Unprocessable Entity')
+      } else if (response.status === 401) {
+        throw new Error('Unauthorized')
+      } else {
+        throw new Error('Something went wrong')
       }
-      return response.json();
     })
     .then(data => {
-      console.log(data);  // Handle the response data
+      this.user_ratingTarget.innerText = data.user_rating
+      this.average_ratingTarget.innerText = data.average_rating
+      this.reviews_countTarget.innerText = data.reviews_count
     })
     .catch(error => {
-      console.error(error);  // Handle the error
+      console.error(error)
+    })
+  }
+
+  deleteRating() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch('/api/ratings/', {
+      method: 'DELETE',
+      headers: {
+        'X-CSRF-Token': csrfToken,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        movie_id: this.data.get('movie-id'),
+      })
+    })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json()
+      } else if (response.status === 422) {
+        throw new Error('Unprocessable Entity')
+      } else if (response.status === 401) {
+        throw new Error('Unauthorized')
+      } else if (response.status === 404) {
+        throw new Error('Not found')
+      } else {
+        throw new Error('Something went wrong')
+      }
+    })
+    .then(data => {
+      this.user_ratingTarget.innerText = "Not graded yet"
+      this.average_ratingTarget.innerText = data.average_rating
+      this.reviews_countTarget.innerText = data.reviews_count
+
+      this.starTargets.forEach(function(starTarget) {
+        starTarget.classList.remove("full-star");
+        starTarget.classList.add("empty-star");
+      });
+    })
+    .catch(error => {
+      console.error(error);
     });
   }
 }
