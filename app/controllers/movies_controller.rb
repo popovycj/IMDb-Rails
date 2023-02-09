@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order("average_rating DESC")
     @categories = Category.all
 
     @selected_category = params[:category]

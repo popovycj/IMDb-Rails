@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :movies
+  resources :movies, only: [:index, :show]
+
+  namespace :admin do
+    resources :movies, except: [:index, :show]
+    resources :categories, only: [:create, :edit]
+  end
 
   namespace :api do
     resources :ratings, only: [] do

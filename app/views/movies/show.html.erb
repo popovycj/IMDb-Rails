@@ -1,3 +1,18 @@
 <h1><%= @movie.title %></h1>
 
-<%= link_to "Back", root_path, class: "btn btn-default" %>
+<p>
+  <strong>Average Rating:</strong>
+  <%= @movie.average_rating %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description.body.to_s.html_safe %>
+</p>
+
+<p>
+  <%= image_tag @movie.image.variant(resize: "300x300") if @movie.image.attached? %>
+</p>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
