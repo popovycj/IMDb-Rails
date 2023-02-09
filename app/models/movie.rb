@@ -6,4 +6,8 @@ class Movie < ApplicationRecord
   validates :average_rating, presence: true, numericality: { in: 0..10 }
 
   self.per_page = 6
+
+  has_one_attached :image
+
+  has_rich_text :description
 end
