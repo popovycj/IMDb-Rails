@@ -1,18 +1,41 @@
-<h1><%= @movie.title %></h1>
+<div class="container" data-controller="movie-card" data-movie-card-movie-id="<%= @movie.id %>">
+  <% if @movie.image.attached? %>
+    <%= image_tag @movie.image.variant(resize: "300x300"), class: "cover" %>
+  <% end %>
 
-<p>
-  <strong>Average Rating:</strong>
-  <%= @movie.average_rating %>
-</p>
+  <div class="details">
+    <div class="movie-title">
+      <%= @movie.title %>
+      <span class="fw-bold" data-movie-card-target="average_rating"><%= @movie.average_rating %></span>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @movie.description.body.to_s.html_safe %>
-</p>
+    <% if user_signed_in? %>
+      <% user_rate = current_user.rating(@movie.id) %>
+      <div class="star-rating">
+        <%= render 'rating_stars', user_rate: user_rate %>
+      </div>
 
-<p>
-  <%= image_tag @movie.image.variant(resize: "300x300") if @movie.image.attached? %>
-</p>
+      <span class="fw-bold user-rating" data-movie-card-target="user_rating">
+        <%= user_rate.zero? ? 'Not graded yet' : user_rate %>
+      </span>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
-<%= link_to 'Back', movies_path %>
+      <button type="button" class="btn-close" aria-label="Close" data-action="click->movie-card#deleteRating"></button>
+    <% end %>
+
+    <span class="likes" data-movie-card-target="reviews_count">
+      <%= @movie.ratings.count %>
+    </span>
+  </div>
+
+  <div class="description">
+    <div class="categories-column">
+      <% @movie.categories.each do |category| %>
+        <span class="tag"><%= category.name %></span>
+      <% end %>
+    </div>
+
+    <div class="description-column">
+      <p><%= @movie.description.body.to_s.html_safe %></p>
+    </div>
+  </div>
+</div>
