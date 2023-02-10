@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "movies", class: "row", data: { "turbo-action" => "advance" } do %>
+  <% movies.each do |movie| %>
+    <%= render movie %>
+  <% end %>
+
+  <%= will_paginate @movies %>
+<% end %>

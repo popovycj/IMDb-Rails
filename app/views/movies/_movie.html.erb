@@ -1,0 +1,49 @@
+<div class="col-sm-4" id="<%= dom_id(movie) %>">
+  <div class="movie-card" data-controller="movie-card" data-movie-card-movie-id="<%= movie.id %>">
+    <%= hidden_field_tag(:authenticity_token, form_authenticity_token) %>
+
+    <%= image_tag movie.image if movie.image.attached? %>
+    <h3><%= highlight(link_to(movie.title, movie_path(movie)), params[:query]) %></h3>
+    <p>(1972)</p>
+    <p>
+      <span class="average-tag">
+        <span class="fw-bold" data-movie-card-target="average_rating">
+          <%= movie.average_rating %>
+        </span>
+        <span>/10</span>
+      </span>
+
+      <span data-movie-card-target="reviews_count"><%= movie.ratings.count %></span>
+      <span> reviews</span>
+    </p>
+
+    <div class="star-rating">
+      <% if user_signed_in? %>
+        <div class="star-rating-user">
+          <% user_rate = current_user.rating(movie.id) %>
+          <span class="tag" data-action="click->movie-card#deleteRating">
+            <span class="user_rating">
+              <span>Your rating: </span>
+              <span class="fw-bold" data-movie-card-target="user_rating">
+                <%= user_rate.zero? ? 'Not graded yet' : user_rate %>
+              </span>
+            </span>
+
+            <span class="delete-rating">Delete rating</span>
+          </span>
+        </div>
+
+        <%= render 'rating_stars', user_rate: user_rate %>
+      <% else %>
+        <p>Log in to evaluate</p>
+      <% end %>
+
+      <div class="movie-categories">
+        <% movie.categories.each do |category| %>
+          <%= link_to category.name, root_path(category: category.name), class: "tag" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

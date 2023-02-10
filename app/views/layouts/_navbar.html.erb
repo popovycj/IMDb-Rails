@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
   <div class="navbar-nav">
     <%= link_to 'IMDb', root_path, class: "navbar-brand" %>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    </form>
+
+    <%= form_with url: movies_path, method: :get, data: { controller: "autosubmit", turbo_frame: "movies", turbo_action: "advance" }, class: "form-inline my-2 my-lg-0" do |form| %>
+      <%= form.search_field :query, data: { action: "input->autosubmit#search" }, class: "form-control mr-sm-2" %>
+    <% end %>
   </div>
 
   <% if user_signed_in? %>
