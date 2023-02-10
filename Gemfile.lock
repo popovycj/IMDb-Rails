@@ -111,6 +111,8 @@ GEM
     dotenv (2.8.1)
     erubi (1.12.0)
     execjs (2.8.1)
+    faker (3.1.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -273,6 +275,7 @@ DEPENDENCIES
   debug
   devise
   dotenv
+  faker (~> 3.1)
   image_processing (~> 1.8)
   importmap-rails
   jbuilder
