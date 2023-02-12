@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_07_195835) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_102150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_195835) do
     t.index ["movie_id", "category_id"], name: "index_categories_movies_on_movie_id_and_category_id"
   end
 
+  create_table "category_movies", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_movies_on_category_id"
+    t.index ["movie_id"], name: "index_category_movies_on_movie_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -102,6 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_07_195835) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "category_movies", "categories"
+  add_foreign_key "category_movies", "movies"
   add_foreign_key "ratings", "movies"
   add_foreign_key "ratings", "users"
 end

@@ -1,5 +1,6 @@
 class Category < ApplicationRecord
-  has_and_belongs_to_many :movies
+  has_many :category_movies
+  has_many :movies, through: :category_movies, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 end
