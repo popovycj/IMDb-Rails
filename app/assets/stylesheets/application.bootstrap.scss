@@ -229,3 +229,43 @@
   width: 480px;
   float: left;
 }
+
+.admin-tag-disabled {
+  background: #ddd;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
+
+  text-decoration: none;
+  color: black;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: red;
+    color: black;
+  }
+}
+
+.admin-tag-enabled {
+  background: white;
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  margin-right: 4px;
+  line-height: 35px;
+  cursor: pointer;
+
+  text-decoration: none;
+  color: black;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: green;
+    color: black;
+  }
+}

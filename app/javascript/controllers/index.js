@@ -9,3 +9,6 @@ application.register("autosubmit", AutosubmitController)
 
 import MovieCardController from "./movie_card_controller"
 application.register("movie-card", MovieCardController)
+
+import MovieCategoryController from "./movie_category_controller"
+application.register("movie-category", MovieCategoryController)

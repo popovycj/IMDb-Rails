@@ -1,5 +1,4 @@
-class Admin::MoviesController < ApplicationController
-  before_action :authenticate_admin!
+class Admin::MoviesController < Admin::ApplicationController
   before_action :find_movie, only: [:edit, :update, :destroy]
 
   def new
@@ -32,10 +31,6 @@ class Admin::MoviesController < ApplicationController
   end
 
   private
-
-  def authenticate_admin!
-    redirect_to root_path, alert: "You are not authorized to access this page." unless current_user.admin?
-  end
 
   def find_movie
     @movie = Movie.find_by(id: params[:id])
