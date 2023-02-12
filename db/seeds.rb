@@ -20,6 +20,7 @@ end
 15.times do
   movie = Movie.new(
     title: Faker::Movie.unique.title,
+    year: Faker::Number.between(from: 1950, to: 2023),
     description: Faker::Lorem.paragraphs(number: 3).join("\n\n") + "<br><strong>#{Faker::Movie.quote}</strong>"
   )
 

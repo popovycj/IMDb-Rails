@@ -4,7 +4,7 @@
 
     <%= image_tag movie.image if movie.image.attached? %>
     <h3><%= highlight(link_to(movie.title, movie_path(movie)), params[:query]) %></h3>
-    <p>(1972)</p>
+    <p>(<%= movie.year %>)</p>
     <p>
       <span class="average-tag">
         <span class="fw-bold" data-movie-card-target="average_rating">
