@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show]
 
   namespace :admin do
+    resources :categories do
+      member do
+        post :edit
+      end
+    end
+
     resources :movies, except: [:index, :show] do
       resources :categories, only: [] do
         member do
