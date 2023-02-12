@@ -7,6 +7,9 @@ import { application } from "./application"
 import AutosubmitController from "./autosubmit_controller"
 application.register("autosubmit", AutosubmitController)
 
+import ImagePreviewController from "./image_preview_controller"
+application.register("image-preview", ImagePreviewController)
+
 import MovieCardController from "./movie_card_controller"
 application.register("movie-card", MovieCardController)
 

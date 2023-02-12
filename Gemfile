@@ -89,3 +89,5 @@ gem 'cssbundling-rails'
 gem 'composite_primary_keys'
 
 gem "faker", "~> 3.1"
+
+gem "simple_form", "~> 5.2"
