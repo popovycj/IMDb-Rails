@@ -49,6 +49,11 @@ GEM
     active_storage-postgresql (0.3.0)
       pg (>= 1.0)
       rails (>= 6.0)
+    active_storage_validations (1.0.3)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (7.0.4.2)
       activesupport (= 7.0.4.2)
       globalid (>= 0.3.6)
@@ -270,6 +275,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage-postgresql
+  active_storage_validations (~> 1.0)
   bootsnap
   bootstrap
   capybara

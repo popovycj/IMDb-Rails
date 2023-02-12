@@ -91,3 +91,5 @@ gem 'composite_primary_keys'
 gem "faker", "~> 3.1"
 
 gem "simple_form", "~> 5.2"
+
+gem "active_storage_validations", "~> 1.0"
