@@ -20,6 +20,8 @@ class Admin::CategoriesController < Admin::ApplicationController
 
     respond_to do |format|
       if @category.save
+        flash.now[:success] = "Category was created"
+
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update('new_category',
@@ -29,9 +31,7 @@ class Admin::CategoriesController < Admin::ApplicationController
                                 partial: "admin/categories/category",
                                 locals: {category: @category}),
             turbo_stream.update('category_counter', Category.count),
-            turbo_stream.update('notice',
-                                partial: "admin/categories/flash_message",
-                                locals: {notice: "Category was created"})
+            turbo_stream.prepend("flash", partial: "layouts/flash")
             ]
         end
       else
@@ -49,14 +49,14 @@ class Admin::CategoriesController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
+        flash.now[:success] = "Category was updated"
+
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update(@category,
                                 partial: "admin/categories/category_inner",
                                 locals: {category: @category}),
-            turbo_stream.update('notice',
-                                partial: "admin/categories/flash_message",
-                                locals: {notice: "Category was updated"})
+            turbo_stream.prepend("flash", partial: "layouts/flash")
           ]
         end
       else
@@ -71,14 +71,14 @@ class Admin::CategoriesController < Admin::ApplicationController
 
   def destroy
     @category.destroy
+    flash.now[:success] = "Category was deleted"
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@category),
           turbo_stream.update('category_counter', Category.count),
-          turbo_stream.update('notice',
-                              partial: "admin/categories/flash_message",
-                              locals: {notice: "Category was destroyed"})
+          turbo_stream.prepend("flash", partial: "layouts/flash")
         ]
       end
     end
