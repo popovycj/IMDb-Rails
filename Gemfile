@@ -72,6 +72,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "database_cleaner", "~> 2.0"
+  gem "factory_bot_rails", "~> 6.2"
+  gem 'simplecov', require: false
 end
 
 gem "dotenv"
