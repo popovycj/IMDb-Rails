@@ -14,7 +14,6 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'database_cleaner'
-require 'factory_bot_rails'
 require 'simplecov'
 
 SimpleCov.start 'rails'
@@ -97,10 +96,6 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-
-  config.include FactoryBot::Syntax::Methods
-
-
   config.before(:context) do
     DatabaseCleaner.clean_with(:truncation)
   end

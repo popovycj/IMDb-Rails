@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :ratings
+  has_many :ratings, dependent: :delete_all
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

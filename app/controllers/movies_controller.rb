@@ -16,6 +16,7 @@ class MoviesController < ApplicationController
         @movies = Movie.joins(:categories).where(categories: { name: @selected_category })
       else
         redirect_to root_path, alert: "Invalid category selected."
+        return
       end
     end
 

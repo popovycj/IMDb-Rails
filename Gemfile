@@ -74,6 +74,7 @@ group :test do
   gem "database_cleaner", "~> 2.0"
   gem "factory_bot_rails", "~> 6.2"
   gem 'simplecov', require: false
+  gem 'rails-controller-testing'
 end
 
 gem "dotenv"

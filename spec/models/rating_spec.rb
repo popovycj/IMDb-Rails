@@ -13,6 +13,14 @@ RSpec.describe Rating, type: :model do
     it "belongs to a user" do
       expect(rating.user).to eq(user)
     end
+
+    it "will be deleted if user is deleted" do
+      expect { user.destroy }.to change { Rating.count }.by(-1)
+    end
+
+    it "will be deleted if movie is deleted" do
+      expect { movie.destroy }.to change { Rating.count }.by(-1)
+    end
   end
 
   describe 'validations' do
