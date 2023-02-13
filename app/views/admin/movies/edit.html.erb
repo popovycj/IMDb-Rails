@@ -7,7 +7,7 @@
     <%= form.input :image, label: "Image", as: :file, input_html: { data: { "action" => "change->image-preview#updatePreview" } } %>
 
     <div class="image-preview mb-3">
-      <%= image_tag(@movie.image.variant(resize_to_limit: [500, 500]) , data: { "image-preview-target" => "preview" }) %>
+      <%= image_tag(@movie.image.variant(resize_to_limit: [500, 500]) , data: { "image-preview-target" => "preview" }) if @movie.valid? %>
     </div>
 
     <%= form.button :submit, "Update", class: "btn btn-primary" %>
