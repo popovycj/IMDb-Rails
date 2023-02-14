@@ -1,0 +1,9 @@
+<p class="card-text">
+  <strong>Id:</strong> <%= category.id %><br>
+  <strong>Name:</strong> <%= category.name %>
+</p>
+
+<div class="d-flex justify-content-between align-items-center">
+  <%= button_to "Edit", edit_admin_category_path(category), method: :post, class: "btn btn-primary" %>
+  <%= button_to "Destroy", admin_category_path(category), method: :delete, class: "btn btn-danger" %>
+</div>

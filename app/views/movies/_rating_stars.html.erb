@@ -1,0 +1,10 @@
+<div class="star-rating-stars">
+  <% (1..10).each do |i| %>
+    <span class="star <%= user_rate >= i ? 'full-star' : 'empty-star' %>"
+      data-movie-card-target="star"
+      data-action="click->movie-card#rateMovie"
+      data-rating="<%= i %>">
+      &#9733;
+    </span>
+  <% end %>
+</div>

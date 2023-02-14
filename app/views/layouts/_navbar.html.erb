@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+  <div class="navbar-nav">
+    <%= link_to 'IMDb', root_path, class: "navbar-brand" %>
+
+    <%= form_with url: movies_path, method: :get, data: { controller: "autosubmit", turbo_frame: "movies", turbo_action: "advance" }, class: "form-inline my-2 my-lg-0" do |form| %>
+      <%= form.search_field :query, data: { action: "input->autosubmit#search" }, class: "form-control mr-sm-2" %>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="navbar-nav ml-auto">
+      <% if current_user.admin? %>
+        <%= button_to 'Add movie', new_admin_movie_path, method: :get, class: "btn btn-outline-success" %>
+      <% end %>
+
+      <%= link_to "Edit Account", edit_user_registration_path, class: "nav-item nav-link" %>
+      <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "nav-item nav-link" %>
+    </div>
+  <% else %>
+    <div class="navbar-nav ml-auto">
+      <%= link_to "Sign In", new_user_session_path, class: "nav-item nav-link" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "nav-item nav-link" %>
+    </div>
+  <% end %>
+</nav>

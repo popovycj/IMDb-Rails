@@ -1,0 +1,22 @@
+<div class="jumbotron text-center">
+  <h1>IMDb Top Rated Movies</h1>
+  <p>A list of top rated movies on IMDb</p>
+
+  <% if current_user&.admin? %>
+    <div class="mb-2">
+      <%= button_to 'Categories list', admin_categories_path, method: :get, class: "btn btn-outline-success" %>
+    </div>
+  <% end %>
+
+  <%= form_tag movies_path, method: :get, class: "form-inline d-flex justify-content-center", data: { controller: "autosubmit" } do %>
+    <%= select_tag :category,
+                    options_from_collection_for_select(@categories, :name, :name, @selected_category),
+                    prompt: "All categories",
+                    class: "form-control categories-dropdown",
+                    data: { action: "change->autosubmit#submitForm" } %>
+  <% end %>
+</div>
+
+<div class="container">
+  <%= render 'movies', movies: @movies %>
+</div>
