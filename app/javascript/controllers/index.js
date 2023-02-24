@@ -10,6 +10,9 @@ application.register("autohide", AutohideController)
 import AutosubmitController from "./autosubmit_controller"
 application.register("autosubmit", AutosubmitController)
 
+import CategoryController from "./category_controller"
+application.register("category", CategoryController)
+
 import ImagePreviewController from "./image_preview_controller"
 application.register("image-preview", ImagePreviewController)
 
