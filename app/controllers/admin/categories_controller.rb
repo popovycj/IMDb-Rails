@@ -1,8 +1,12 @@
 class Admin::CategoriesController < Admin::ApplicationController
-  before_action :set_category, only: %i[ edit update destroy add_category remove_category ]
+  before_action :set_category, only: %i[edit update destroy add_category remove_category]
 
   def index
     @categories = Category.all.order(created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.json { render json: @categories }
+    end
   end
 
   def edit
@@ -10,8 +14,9 @@ class Admin::CategoriesController < Admin::ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(@category,
                                                  partial: "admin/categories/edit_form",
-                                                 locals: {category: @category})
+                                                 locals: { category: @category })
       end
+      format.json { render json: @category }
     end
   end
 
@@ -26,22 +31,24 @@ class Admin::CategoriesController < Admin::ApplicationController
           render turbo_stream: [
             turbo_stream.update('new_category',
                                 partial: "admin/categories/form",
-                                locals: {category: Category.new}),
+                                locals: { category: Category.new }),
             turbo_stream.prepend('categories',
                                 partial: "admin/categories/category",
-                                locals: {category: @category}),
+                                locals: { category: @category }),
             turbo_stream.update('category_counter', Category.count),
             turbo_stream.prepend("flash", partial: "layouts/flash")
-            ]
+          ]
         end
+        format.json { render json: @category, status: :created }
       else
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update('new_category',
                                 partial: "admin/categories/form",
-                                locals: {category: @category})
-            ]
+                                locals: { category: @category })
+          ]
         end
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,16 +62,18 @@ class Admin::CategoriesController < Admin::ApplicationController
           render turbo_stream: [
             turbo_stream.update(@category,
                                 partial: "admin/categories/category_inner",
-                                locals: {category: @category}),
+                                locals: { category: @category }),
             turbo_stream.prepend("flash", partial: "layouts/flash")
           ]
         end
+        format.json { render json: @category, status: :ok }
       else
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(@category,
                                                    partial: "admin/categories/edit_form",
-                                                   locals: {category: @category})
+                                                   locals: { category: @category })
         end
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,17 +90,24 @@ class Admin::CategoriesController < Admin::ApplicationController
           turbo_stream.prepend("flash", partial: "layouts/flash")
         ]
       end
+      format.json { head :no_content }
     end
   end
 
   def add_category
     @movie = Movie.find(params[:movie_id])
     @movie.categories << @category
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   def remove_category
     @movie = Movie.find(params[:movie_id])
     @movie.categories.delete(@category)
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   private
