@@ -6,7 +6,10 @@ function CategoryList({ categories, deleteCategory, updateCategory }) {
   return (
     <div className="categories">
       {categories.map(category => (
-        <CategoryItem key={category.id} category={category} deleteCategory={deleteCategory} updateCategory={updateCategory}/>
+        <CategoryItem key={category.id}
+                      category={category}
+                      deleteCategory={deleteCategory}
+                      updateCategory={updateCategory}/>
       ))}
     </div>
   )

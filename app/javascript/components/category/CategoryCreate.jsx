@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CategoryCreate = ({ addCategory }) => {
+const CategoryCreate = ({ addCategory, setFlash }) => {
   const [name, setName] = useState('')
 
   const handleSubmit = (event) => {
@@ -26,7 +26,8 @@ const CategoryCreate = ({ addCategory }) => {
         }
       })
       .then(data => {
-        addCategory(data)
+        addCategory(data.category)
+        setFlash(data.flashes[0])
         setName('')
       })
       .catch(error => console.log(error))

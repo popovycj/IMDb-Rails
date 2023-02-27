@@ -39,7 +39,7 @@ class Admin::CategoriesController < Admin::ApplicationController
             turbo_stream.prepend("flash", partial: "layouts/flash")
           ]
         end
-        format.json { render json: @category, status: :created }
+        format.json { render json: { category: @category, flashes: flash }, status: :created }
       else
         format.turbo_stream do
           render turbo_stream: [

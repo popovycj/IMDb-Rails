@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import CategoryList from './CategoryList';
 import CategoryCreate from './CategoryCreate';
+import FlashMessage from '../shared/FlashMessage';
 
 function CategoryApp() {
   const [categories, setCategories] = useState([]);
+  const [flash, setFlash] = useState([]);
 
   useEffect(() => {
     fetch('/admin/categories.json')
@@ -24,7 +26,9 @@ function CategoryApp() {
   }
 
   return (
-    <div>
+    <>
+      <FlashMessage flash={flash} />
+
       <div className="jumbotron text-center mb-3">
         <h1>Categories</h1>
 
@@ -36,12 +40,15 @@ function CategoryApp() {
 
       <div className="container text-center">
         <div id="new_category" className="mb-3">
-          <CategoryCreate addCategory={addCategory} />
+          <CategoryCreate addCategory={addCategory}
+                          setFlash={setFlash} />
         </div>
 
-        <CategoryList categories={categories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>
+        <CategoryList categories={categories}
+                      deleteCategory={deleteCategory}
+                      updateCategory={updateCategory}/>
       </div>
-    </div>
+    </>
   )
 }
 

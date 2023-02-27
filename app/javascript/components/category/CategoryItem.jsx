@@ -33,7 +33,9 @@ function CategoryItem({ category, deleteCategory, updateCategory }) {
     <div className="card card-body">
       {
         isEditing ?
-          <CategoryEdit category={category} updateCategory={updateCategory} setIsEditing={setIsEditing} />
+          <CategoryEdit category={category}
+                        updateCategory={updateCategory}
+                        setIsEditing={setIsEditing} />
           :
           <>
             <p className="card-text">
