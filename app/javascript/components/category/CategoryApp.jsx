@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import CategoryList from './CategoryList';
-import CategoryForm from './CategoryForm';
+import CategoryCreate from './CategoryCreate';
 
 function CategoryApp() {
   const [categories, setCategories] = useState([]);
@@ -13,6 +13,14 @@ function CategoryApp() {
 
   const addCategory = (category) => {
     setCategories([category,...categories])
+  }
+
+  const deleteCategory = (categoryId) => {
+    setCategories(categories.filter(category => category.id !== categoryId))
+  }
+
+  const updateCategory = (category) => {
+    setCategories(categories.map(c => c.id === category.id ? category : c))
   }
 
   return (
@@ -28,10 +36,10 @@ function CategoryApp() {
 
       <div className="container text-center">
         <div id="new_category" className="mb-3">
-          <CategoryForm addCategory={addCategory} />
+          <CategoryCreate addCategory={addCategory} />
         </div>
 
-        <CategoryList categories={categories}/>
+        <CategoryList categories={categories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>
       </div>
     </div>
   )

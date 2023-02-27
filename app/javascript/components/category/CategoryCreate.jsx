@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CategoryForm = ({ addCategory }) => {
+const CategoryCreate = ({ addCategory }) => {
   const [name, setName] = useState('')
 
   const handleSubmit = (event) => {
@@ -42,4 +42,4 @@ const CategoryForm = ({ addCategory }) => {
   )
 }
 
-export default CategoryForm
+export default CategoryCreate
