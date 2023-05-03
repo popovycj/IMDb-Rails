@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <div class='d-flex justify-content-between'>
+      <div><%= comment.user.email %></div>
+      <div><%= comment.created_at.to_formatted_s(:long) %></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= comment.body %></p>
+    </blockquote>
+  </div>
+</div>

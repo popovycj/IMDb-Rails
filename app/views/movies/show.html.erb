@@ -60,6 +60,24 @@
 
     <div class="description-column">
       <p><%= @movie.description.body.to_s.html_safe %></p>
+      <p>Duration: <%= @movie.duration %>
+      <p>Actors: <%= @movie.actors %>
+
+      <h3>Comments</h3>
+      <% if @movie.comments.blank? %>
+        <p>No comments</p>
+      <% end %>
+
+      <% @movie.comments.each do |c| %>
+        <div class="mb-3">
+          <%= render 'comments/comment', comment: c %>
+        </div>
+      <% end %>
+
+      <% if user_signed_in? %>
+        <hr>
+        <%= render 'comments/form', movie: @movie %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -2,6 +2,7 @@ class Movie < ApplicationRecord
   has_many :ratings, dependent: :delete_all
   has_many :category_movies, dependent: :destroy
   has_many :categories, through: :category_movies
+  has_many :comments, dependent: :destroy
 
   self.per_page = 6
 

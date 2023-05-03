@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show]
 
+  resources :comments, only: [:create]
+
   namespace :admin do
     resources :categories do
       member do

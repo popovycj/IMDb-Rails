@@ -1,0 +1,6 @@
+<%= form_for(movie.comments.new) do |f| %>
+  <%= f.label :body, value: 'New comment', class: 'form-label' %>
+  <%= f.text_area :body, class: "form-control " %>
+  <%= f.hidden_field :movie_id, value: movie.id %>
+  <%= f.submit class: 'btn btn-outline-success mt-3' %>
+<% end %>
