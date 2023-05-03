@@ -1,6 +1,6 @@
 require "faker"
 
-User.create!(email: "admin@example.com", password: "password", role: :admin)
+User.create!(email: "Vikabtg@gmail.com", password: "password", role: :admin)
 User.create!(email: "user@example.com", password: "password", role: :user)
 
 5.times do
@@ -18,79 +18,79 @@ categories.each do |name|
 end
 
 m1 = Movie.new(
-  :title => "Inception",
-  :description => "In a world where technology exists to enter the human mind through dream invasion, a highly skilled thief is given a final chance at redemption which involves executing his toughest job to date: Inception.",
-  :year => 2010,
-  :actors => "Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom Hardy"
+  :title => "The Shawshank Redemption",
+  :description => "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.",
+  :year => 1994,
+  :actors => "Tim Robbins, Morgan Freeman, Bob Gunton"
 )
 
-m1.image.attach(io: File.open(Rails.root.join("public", "posters", "inception.jpg")), filename: "inception.jpg")
+m1.image.attach(io: File.open(Rails.root.join("public", "posters", "shawshank.jpg")), filename: "shawshank.jpg")
 m1.save
 
 m2 = Movie.new(
-  :title => "The Avengers",
-  :description => "Nick Fury of S.H.I.E.L.D. brings together a team of super humans to form The Avengers to help save the Earth from Loki and his army.",
-  :year => 2012,
+  :title => "The Godfather",
+  :description => "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",
+  :year => 1972,
   :duration => "1:54:12",
-  :actors => "Robert Downey Jr., Chris Evans, Scarlett Johansson, Jeremy Renner"
+  :actors => "Marlon Brando, Al Pacino, James Caan"
 )
 
-m2.image.attach(io: File.open(Rails.root.join("public", "posters", "avengers.jpg")), filename: "avengers.jpg")
+m2.image.attach(io: File.open(Rails.root.join("public", "posters", "godfather.jpg")), filename: "godfather.jpg")
 m2.save
 
 m3 = Movie.new(
-  :title => "The Matrix",
-  :description => "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
-  :year => 1999,
+  :title => "The Dark Knight",
+  :description => "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+  :year => 2008,
   :duration => "2:13:12",
-  :actors => "Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss, Hugo Weaving"
+  :actors => "Christian Bale, Heath Ledger, Aaron Eckhart"
 )
 
-m3.image.attach(io: File.open(Rails.root.join("public", "posters", "matrix.jpg")), filename: "matrix.jpg")
+m3.image.attach(io: File.open(Rails.root.join("public", "posters", "darkkhight.jpg")), filename: "darkkhight.jpg")
 m3.save
 
 m4 = Movie.new(
-  :title => "Iron Man",
-  :description => "When wealthy industrialist Tony Stark is forced to build an armored suit after a life-threatening incident, he ultimately decides to use its technology to fight against evil.",
-  :year => 2008,
+  :title => "12 Angry Men",
+  :description => "The jury in a New York City murder trial is frustrated by a single member whose skeptical caution forces them to more carefully consider the evidence before jumping to a hasty verdict.",
+  :year => 1957,
   :duration => "1:48:04",
-  :actors => "Robert Downey Jr., Gwyneth Paltrow, Terrence Howard, Jeff Bridges"
+  :actors => "Henry Fonda, Lee J. Cobb, Martin Balsam"
 )
 
-m4.image.attach(io: File.open(Rails.root.join("public", "posters", "ironman.jpg")), filename: "ironman.jpg")
+m4.image.attach(io: File.open(Rails.root.join("public", "posters", "angryman.jpg")), filename: "angryman.jpg")
 m4.save
 
 m5 = Movie.new(
-  :title => "Pulp Fiction",
-  :description => "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-  :year => 1994,
+  :title => "Schindler's List",
+  :description => "In German-occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",
+  :year => 1993,
   :duration => "1:38:01",
-  :actors => "John Travolta, Uma Thurman, Samuel L. Jackson, Bruce Willis"
+  :actors => "Liam Neeson, Ralph Fiennes, Ben Kingsley"
 )
 
-m5.image.attach(io: File.open(Rails.root.join("public", "posters", "pulpfiction.jpg")), filename: "pulpfiction.jpg")
+m5.image.attach(io: File.open(Rails.root.join("public", "posters", "schindler.jpg")), filename: "schindler.jpg")
 m5.save
 
 m6 = Movie.new(
-  :title => "Inglourious Basterds",
-  :description => "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
-  :year => 2009,
+  :title => "Seven",
+  :description => "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+  :year => 1995,
   :duration => "2:01:12",
-  :actors => "Brad Pitt, Diane Kruger, Eli Roth, Mélanie Laurent"
+  :actors => "Morgan Freeman, Brad Pitt, Kevin Spacey"
 )
 
-m6.image.attach(io: File.open(Rails.root.join("public", "posters", "inglouriousbasterds.jpg")), filename: "inglouriousbasterds.jpg")
+m6.image.attach(io: File.open(Rails.root.join("public", "posters", "seven.jpg")), filename: "seven.jpg")
 m6.save
 
 m7 = Movie.new(
-  :title => "Shaun of the Dead",
-  :description => "A man decides to turn his moribund life around by winning back his ex-girlfriend, reconciling his relationship with his mother, and dealing with an entire community that has returned from the dead to eat the living.",
-  :year => 2004,
+  :title => "Interstellar",
+  :description => "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+  :year => 2014,
   :duration => "1:55:57",
-  :actors => "Simon Pegg, Nick Frost, Kate Ashfield, Lucy Davis"
+  :actors => "Matthew McConaughey, Anne Hathaway, Jessica Chastain"
 )
 
-m7.image.attach(io: File.open(Rails.root.join("public", "posters", "shaunofthedead.jpg")), filename: "shaunofthedead.jpg")
+m7.image.attach(io: File.open(Rails.root.join("public", "posters", "interstellar.jpg")), filename: "interstellar.jpg")
 m7.save
 
 Movie.all.each do |movie|
